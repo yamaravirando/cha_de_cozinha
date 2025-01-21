@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chá de Cozinha da Vanessa e Gabriel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            background-image: url('https://drive.google.com/uc?export=view&id=1aPDdnYYYKnxup0NYq3gOa8ns1zNPYDBL'); /* Imagem de fundo */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            opacity: 0.1; /* Marca d'água */
+        }
+
+        header {
+            background-color: rgba(255, 111, 97, 0.8); /* Tarja com transparência */
+            color: white;
+            padding: 20px 10px;
+            text-align: center;
+        }
+
+        section {
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        .button {
+            display: block;
+            width: fit-content;
+            margin: 10px auto;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: white;
+            background-color: #ff6f61;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background-color: #e65a50;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #f1f1f1;
+            margin-top: 20px;
+        }
+
+        .countdown {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff6f61;
+            text-align: center;
+        }
+
+        .mural {
+            margin-top: 20px;
+        }
+
+        .mural textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .mural .messages {
+            margin-top: 10px;
+            background: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Chá de Cozinha SURPRESA - Vanessa e Gabriel</h1>
+</header>
+
+<section>
+    <h2>Contagem Regressiva</h2>
+    <p class="countdown" id="countdown"></p>
+</section>
+
+<section>
+    <h2>O Casal</h2>
+    <img src="https://drive.google.com/uc?export=view&id=1jpjN_Evg1xkX-HyJ4YoSyrp5_LkA0gd2" alt="Vanessa e Gabriel" style="max-width: 100%; height: auto; border-radius: 10px;">
+    <p>Vanessa e Gabriel iniciaram uma vida juntos há 6 anos e, desde então, têm construído uma história de muito amor e companheirismo. Junte-se a nós para celebrar o amor e a nova jornada desse casal. Vamos ajudá-los a preparar um lar com muito carinho e alegria. Brindaremos essa nova etapa com risadas e, claro, um bingo para garantir a diversão! Sua presença e carinho serão um grande apoio para esse início tão especial!!</p>
+</section>
+
+<section>
+    <h2>Confirmar Presença</h2>
+    <p>Por favor, confirme sua presença para melhor organização.</p>
+    <a href="https://docs.google.com/forms/d/1nCy1ZD_AnsaSMMMDYekfpndlw-rALTIY5RI6AULcuoY/edit" class="button" target="_blank">Confirmar Presença</a>
+</section>
+
+<section>
+    <h2>Lista de Presentes</h2>
+    <p>Confira nossa lista de presentes e escolha o que deseja levar!</p>
+    <a href="https://docs.google.com/spreadsheets/d/1EcPLZl5gdr8PWG9hNGX8bgB-jpRU3sPidyU1VmQMfNA/edit?gid=0#gid=0" class="button" target="_blank">Acessar Lista de Presentes</a>
+</section>
+
+<section class="mural">
+    <h2>Mural de Recados</h2>
+    <textarea id="messageInput" placeholder="Deixe uma mensagem para o casal..."></textarea>
+    <button class="button" onclick="addMessage()">Enviar Mensagem</button>
+    <div class="messages" id="messagesContainer"></div>
+</section>
+
+<section>
+    <h2>Dúvidas?</h2>
+    <p>Entre em contato pelo WhatsApp: 11 98827-8434 - Yamara</p>
+</section>
+
+<footer>
+    <p>Estamos ansiosos para celebrar com você! 🥰</p>
+</footer>
+
+<script>
+// Contagem regressiva
+const countdownDate = new Date("Feb 15, 2025 15:00:00").getTime();
+
+const countdown = setInterval(function() {
+    const now = new Date().getTime();
+    const distance = countdownDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+    if (distance < 0) {
+        clearInterval(countdown);
+        document.getElementById("countdown").innerHTML = "Evento começando agora!";
+    }
+}, 1000);
+
+// Função para adicionar mensagem no mural
+function addMessage() {
+    const message = document.getElementById('messageInput').value;
+    if (message) {
+        const messageContainer = document.getElementById('messagesContainer');
+        const newMessage = document.createElement('p');
+        newMessage.textContent = message;
+        messageContainer.appendChild(newMessage);
+        document.getElementById('messageInput').value = ''; // Limpar campo após envio
+    } else {
+        alert("Por favor, escreva uma mensagem!");
+    }
+}
+</script>
+
+</body>
+</html>
